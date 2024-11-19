@@ -1,0 +1,43 @@
+{%load static%}
+{% load thai_date %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Description</title>
+    <link rel="stylesheet" href="{% static 'CSS/new_page.css' %}"> 
+</head>
+<body>
+    {% include 'news/navbar.html' %}
+    <div class="container">
+        <div class="new_block">
+            <div class="block_category">
+                <div class="category">{{new.category}}</div>
+            </div>
+            <div class="block_title">
+                <div class="title">{{new.title}}</div>
+            </div>
+            <div class="line"></div>
+            <div class="block_date_view">
+                <div class="date_post">เผยแพร่ : {{new.published_date|thai_date}}</div>
+                <div class="post_by">ผู้เขียน : {{new.post_by}}</div>
+                <div class="view_count">จำนวนยอดคนอ่าน : {{new.count_view}} คน</div>
+            </div>
+            {% if new.img %}
+            <div class="new_image">
+                <img src="{{new.img.url}}" alt="new-image">
+            </div>
+            {% else %}
+                <img src="" alt="new-image">
+            {% endif %}
+            <div class="block_description">
+                {%for p in parts%}
+                    <div class="describtion">{{p}}</div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    {% include 'news/footer.html' %}
+</body>
+</html>

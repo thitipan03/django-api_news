@@ -1,0 +1,48 @@
+{%load static%}
+{% load thai_date %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'CSS/home.css' %}"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <!-- {% include 'news/navbar.html' %} -->
+    <div class="container">
+        <div class="news_container">
+            {%for n in news%}
+                <a href="/news/read/{{n.id}}">
+                    <div class="news">
+                        <div class="new_image">
+                            {%if n.img %}
+                            <img src="{{n.img.url}}" alt="new-image">
+                            {%endif%}
+                        </div>
+                        <div class="category_date">
+                            <div class="category">{{n.category}} </div>
+                            <div class="between_">|</div>
+                            <div class="date_post">{{n.published_date|thai_date}}</div>
+                        </div>
+                        <div class="block_text">
+                            <div class="new_title">{{n.title}}</div>
+                        </div>
+                        <div class="block_text">
+                            <div class="new_description">{{n.description}}</div>
+                        </div>
+                        <div class="down_content">
+                            <div class="post_by">{{n.post_by}}</div>
+                            <div class="count_view">
+                                <i class="bi bi-eye"></i> {{n.count_view}}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {%endfor%}
+        </div>
+    </div>
+    <!-- {% include 'news/footer.html' %} -->
+</body>
+</html>
